@@ -1,61 +1,62 @@
-    <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column">
-        <div class="sidebar-brand">
-          <i class="fa-solid fa-list"></i>
-            <span>Voting</span>
-        </div>
-        
-        <div class="sidebar-nav flex-grow-1">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">
-                      <i class="fa-solid fa-users"></i>
-                        <span>Add User</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="castvote">
-                      <i class="fa-solid fa-person-chalkboard"></i>
-                        <span>Cast Vote</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column">
+    <div class="sidebar-brand">
+        <i class="fa-solid fa-list"></i>
+        <span>Voting App</span>
     </div>
 
-    <!-- Content Wrapper -->
-    <div class="content-wrapper">
-        <!-- Topbar -->
-        <nav class="topbar d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <button class="btn btn-outline-secondary me-3 d-md-none" id="sidebar-toggle">
-                    <i class="fas fa-bars"></i>
+    <div class="sidebar-nav flex-grow-1">
+        <ul class="nav flex-column">
+
+            @for(nav of menus(); track nav.id) {
+                <li class="nav-item">
+                    <a 
+                      class="nav-link"
+                      [routerLink]="[nav.route]"
+                      [class.active]="activeItem() === nav.id"
+                      (click)="setActive(nav.id)"
+                    >
+                      <i class="{{ nav.icon }}"></i>
+                      <span>{{ nav.name }}</span>
+                    </a>
+                  </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<!-- Content Wrapper -->
+<div class="content-wrapper">
+    <!-- Topbar -->
+    <nav class="topbar d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-secondary me-3 d-md-none" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="user-menu">
+
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=4361ee&color=fff" alt="User"
+                        class="user-avatar">
+                    <span class="d-none d-md-inline ms-2">John Doe</span>
                 </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                </ul>
             </div>
-            
-            <div class="user-menu">
-                
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=4361ee&color=fff" alt="User" class="user-avatar">
-                        <span class="d-none d-md-inline ms-2">John Doe</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Main Content -->
-        <main class="container-fluid px-4 py-4">
-            <router-outlet></router-outlet>
-        </main>
-    </div>
-
- 
-    
-               
+    <!-- Main Content -->
+    <main class="container-fluid px-4 py-4">
+        <router-outlet></router-outlet>
+    </main>
+</div>

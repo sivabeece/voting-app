@@ -19,7 +19,7 @@
                                         {{ selectedVoter?.name || 'Select Voter' }}
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        @for (vote of voters; track vote.id) {
+                                        @for (vote of voters(); track vote.id) {
                                         <li>
                                             <a class="dropdown-item" (click)="OnSelectVoter(vote)">
                                                 {{ vote.name }}
@@ -36,7 +36,7 @@
                         <div class="col">
                             @if (this.selectedVoter) {
                             <div class="custom-radio-group">
-                                @for (option of candidates; track option.value) {
+                                @for (option of candidates(); track option.value) {
                                 <label class="custom-radio-container">
                                     <input type="radio" name="custom-radio" [value]="option.value"
                                         (change)="onSelectCandidate(option.value)" />
